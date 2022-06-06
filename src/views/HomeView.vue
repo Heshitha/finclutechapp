@@ -1,18 +1,27 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
-  </div>
+    <section class="py-5 text-center container">
+        <div class="row py-lg-5">
+        <div class="col-lg-6 col-md-8 mx-auto">
+            <h1 class="fw-light">Welcome {{userData.userdata.firstName}} {{userData.userdata.lastName}}</h1>
+            <p class="lead text-muted">This application is for manage customer data and demonstrate the capabilities of Vue and .Net Core</p>
+        </div>
+        </div>
+    </section>
 </template>
-
 <script lang="ts">
-import { defineComponent } from 'vue';
-import HelloWorld from '@/components/HelloWorld.vue'; // @ is an alias to /src
+import { defineComponent, ref } from 'vue';
+import { useStore } from 'vuex'
 
-export default defineComponent({
-  name: 'HomeView',
-  components: {
-    HelloWorld,
-  },
-});
+export default ({
+    name:"HomeView",
+    setup() {
+        const store = useStore();
+        const userData = ref(store.state)
+
+        return {
+            userData,
+            store
+        }
+    },
+})
 </script>
